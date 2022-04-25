@@ -96,5 +96,15 @@ namespace ApiBremont.Controllers
             return Lista_de_adjectives;
         }
 
+        [HttpGet("ClothesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EClothes>> ConsultarClothesPrm()
+        {
+            Models.Clothes clothes = new Models.Clothes();
+
+            List<Modelo.Entidades.EClothes> Lista_de_clothes = clothes.Lista_de_clothes();
+
+            return Lista_de_clothes;
+        }
+
     }
 }
