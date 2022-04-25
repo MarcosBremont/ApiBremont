@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+}
+
+
+<div>
+    <h1 style="text-align:center">
+        Api Bremont
+    </h1>
+    <h2 style="font-family: 'Advent Pro';
+        text-align: center">
+        V1.0.0
+    </h2>
+
+
+    @{
+
+        Modelo.Conexion conexion = new Modelo.Conexion();
+        try
+        {
+            conexion.TestConnection();
+            <img style="width:150px;display:block;margin:auto;" src="~/images/Conection.gif" alt="gif image" />
+            <h2 style="text-align:center">El Sistema está en linea</h2>
+        }
+        catch
+        {
+            <img id="errorimagen" class="alignCenters" style="visibility:initial" src="~/images/NoConection.gif" />
+            <h2 style="font-family:'Advent Pro'" class="textAlign">El Sistema no tiene conexión</h2>
+
+        }
+    }
+
+
+</div>

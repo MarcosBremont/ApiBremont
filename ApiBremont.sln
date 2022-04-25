@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.810.19
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiBremont", "ApiBremont\ApiBremont.csproj", "{D999AA95-19B5-437C-952C-81C543C2E404}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Modelo", "Modelo\Modelo.csproj", "{3E1EB03A-7ED8-4A32-ABA6-1D5001542135}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D999AA95-19B5-437C-952C-81C543C2E404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D999AA95-19B5-437C-952C-81C543C2E404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D999AA95-19B5-437C-952C-81C543C2E404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D999AA95-19B5-437C-952C-81C543C2E404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E1EB03A-7ED8-4A32-ABA6-1D5001542135}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E1EB03A-7ED8-4A32-ABA6-1D5001542135}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E1EB03A-7ED8-4A32-ABA6-1D5001542135}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E1EB03A-7ED8-4A32-ABA6-1D5001542135}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {16CA1B9D-6C82-4CAC-9EA8-48E5FFC97D2E}
+	EndGlobalSection
+EndGlobal
