@@ -117,6 +117,18 @@ namespace ApiBremont.Controllers
         }
 
 
+        [HttpGet("SimplePresentPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.ESimplePresent>> ConsultarSimplePresentPrm()
+        {
+            Models.SimplePresent simplepresent = new Models.SimplePresent();
+
+            List<Modelo.Entidades.ESimplePresent> Lista_de_simple_present= simplepresent.Lista_de_simple_present();
+
+            return Lista_de_simple_present;
+        }
+
+
+
 
     }
 }
