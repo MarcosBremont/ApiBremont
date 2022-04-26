@@ -106,5 +106,17 @@ namespace ApiBremont.Controllers
             return Lista_de_clothes;
         }
 
+        [HttpGet("PronounsPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPronouns>> ConsultarPronounsPrm()
+        {
+            Models.Pronouns pronouns = new Models.Pronouns();
+
+            List<Modelo.Entidades.EPronouns> Lista_de_pronouns = pronouns.Lista_de_pronouns();
+
+            return Lista_de_pronouns;
+        }
+
+
+
     }
 }
