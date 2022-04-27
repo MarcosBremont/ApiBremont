@@ -127,6 +127,27 @@ namespace ApiBremont.Controllers
             return Lista_de_simple_present;
         }
 
+        [HttpGet("PrepositionsOfTimePRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPrepositionsOfTime>> ConsultarPrepositionsOfTimePrm()
+        {
+            Models.PrepositionsOfTime prepositionsOfTime = new Models.PrepositionsOfTime();
+
+            List<Modelo.Entidades.EPrepositionsOfTime> Lista_de_prepositionsOfTime = prepositionsOfTime.Lista_de_prepositions_Of_Time();
+
+            return Lista_de_prepositionsOfTime;
+        }
+
+
+
+        [HttpGet("FamilyvocabularyPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EFamilyVocabulary>> ConsultarFamilyvocabularyPrm()
+        {
+            Models.Family family = new Models.Family();
+
+            List<Modelo.Entidades.EFamilyVocabulary> list_family = family.Lista_de_Family();
+
+            return list_family;
+        }
 
 
 
