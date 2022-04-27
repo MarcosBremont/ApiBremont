@@ -159,6 +159,18 @@ namespace ApiBremont.Controllers
             return list_any_some;
         }
 
+        [HttpGet("VerbToBeSentencesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVerbToBe>> ConsultarVerbToBePrm()
+        {
+            Models.VerbToBe verbtobe = new Models.VerbToBe();
+
+            List<Modelo.Entidades.EVerbToBe> list_verbtobe = verbtobe.Lista_de_verbtobe();
+
+            return list_verbtobe;
+        }
+
+
+
 
 
     }
