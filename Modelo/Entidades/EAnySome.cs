@@ -6,7 +6,7 @@ namespace Modelo.Entidades
 {
     public class EAnySome
     {
-        public string SimplePresentExercises { get; set; }
+        public string AnySomeSentences { get; set; }
         public string CorrectAnswer { get; set; }
 
     }
