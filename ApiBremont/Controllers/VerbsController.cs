@@ -149,6 +149,16 @@ namespace ApiBremont.Controllers
             return list_family;
         }
 
+        [HttpGet("AnySomePRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EAnySome>> ConsultarAnySomePrm()
+        {
+            Models.AnySome anysome = new Models.AnySome();
+
+            List<Modelo.Entidades.EAnySome> list_any_some = anysome.Lista_de_Any_Some();
+
+            return list_any_some;
+        }
+
 
 
     }
