@@ -169,6 +169,16 @@ namespace ApiBremont.Controllers
             return list_verbtobe;
         }
 
+        [HttpGet("QuantifiersSentencePRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EQuantifiers>> ConsultarQuantifiersSentencePrm()
+        {
+            Models.Quantifiers quantifiers = new Models.Quantifiers();
+
+            List<Modelo.Entidades.EQuantifiers> list_quantifiers = quantifiers.Lista_de_quantifiers();
+
+            return list_quantifiers;
+        }
+
 
 
 
