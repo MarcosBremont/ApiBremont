@@ -169,14 +169,14 @@ namespace ApiBremont.Controllers
             return list_verbtobe;
         }
 
-        [HttpGet("QuantifiersSentencePRM/")]
-        public ActionResult<IEnumerable<Modelo.Entidades.EQuantifiers>> ConsultarQuantifiersSentencePrm()
+        [HttpGet("QuestionsWithHowPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EQuestionWithHow>> ConsultarQuestionsWithHow()
         {
-            Models.Quantifiers quantifiers = new Models.Quantifiers();
+            Models.QuestionsWithHow questionswithhow = new Models.QuestionsWithHow();
 
-            List<Modelo.Entidades.EQuantifiers> list_quantifiers = quantifiers.Lista_de_quantifiers();
+            List<Modelo.Entidades.EQuestionWithHow> list_questionwithhow = questionswithhow.Lista_de_questionWithHow();
 
-            return list_quantifiers;
+            return list_questionwithhow;
         }
 
 
