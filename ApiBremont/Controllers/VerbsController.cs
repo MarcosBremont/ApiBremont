@@ -189,6 +189,16 @@ namespace ApiBremont.Controllers
             return list_questionwithhow;
         }
 
+        [HttpGet("CategoriesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.ECategories>> ConsultarCategories()
+        {
+            Models.Categories categories = new Models.Categories();
+
+            List<Modelo.Entidades.ECategories> list_categories = categories.Lista_de_Categories();
+
+            return list_categories;
+        }
+
 
 
 
