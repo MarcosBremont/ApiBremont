@@ -200,6 +200,29 @@ namespace ApiBremont.Controllers
         }
 
 
+        [HttpGet("PagesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPages>> ConsultarPages()
+        {
+            Models.Pages pages = new Models.Pages();
+
+            List<Modelo.Entidades.EPages> list_pages = pages.Lista_de_pages();
+
+            return list_pages;
+        }
+
+
+        [HttpGet("VocabularyPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVocabulary>> ConsultarVocabulary()
+        {
+            Models.Vocabulary vocabulary = new Models.Vocabulary();
+
+            List<Modelo.Entidades.EVocabulary> list_vocabulary = vocabulary.Lista_de_vocabulary();
+
+            return list_vocabulary;
+        }
+
+
+
 
 
 
