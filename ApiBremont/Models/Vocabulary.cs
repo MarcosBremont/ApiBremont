@@ -16,7 +16,7 @@ namespace ApiBremont.Models
             List<Modelo.Entidades.EVocabulary> Lista_de_vocabulary = new List<Modelo.Entidades.EVocabulary>();
 
             DataTable dt = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SlistaVerbos", GetCon());
+            MySqlCommand cmd = new MySqlCommand("SVocabularyWords", GetCon());
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);
