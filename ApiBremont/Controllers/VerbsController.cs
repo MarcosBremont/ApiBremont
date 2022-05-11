@@ -222,6 +222,18 @@ namespace ApiBremont.Controllers
         }
 
 
+        [HttpGet("VocabularyClothesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVocabularyClothes>> ConsultarVocabularyClothes()
+        {
+            Models.VocabularyClothes vocabularyclothes = new Models.VocabularyClothes();
+
+            List<Modelo.Entidades.EVocabularyClothes> list_vocabulary_clothes = vocabularyclothes.Lista_de_vocabulary_clothes();
+
+            return list_vocabulary_clothes;
+        }
+
+
+
 
 
 
