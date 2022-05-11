@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Modelo.Entidades
 {
-    public class EVocabularyFamily
+    public class EVocabularyClothes
     {
         public string word { get; set; }
         public string meaning { get; set; }

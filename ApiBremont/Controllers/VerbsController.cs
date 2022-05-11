@@ -234,6 +234,19 @@ namespace ApiBremont.Controllers
 
 
 
+        [HttpGet("VocabularyFamilyPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVocabularyFamily>> ConsultarVocabularyFamily()
+        {
+            Models.VocabularyFamily vocabularyFamily = new Models.VocabularyFamily();
+
+            List<Modelo.Entidades.EVocabularyFamily> list_vocabulary_family = vocabularyFamily.Lista_de_vocabulary_family();
+
+            return list_vocabulary_family;
+        }
+
+
+
+
 
 
 
