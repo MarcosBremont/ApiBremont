@@ -10,5 +10,6 @@ namespace Modelo.Entidades
         public decimal precio { get; set; }
         public string disponible { get; set; }
         public string foto { get; set; }
+        public string descripcion { get; set; }
     }
 }
