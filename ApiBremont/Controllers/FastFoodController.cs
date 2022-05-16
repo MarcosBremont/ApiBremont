@@ -29,7 +29,20 @@ namespace ApiBremont.Controllers
             return lista_menu;
         }
 
-     
+
+
+        [HttpGet("ObtenerEmpresa")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EEmpresaFFA>> ObtenerEmpresa()
+        {
+            Models.EmpresaFFA empresa = new Models.EmpresaFFA();
+
+            List<Modelo.Entidades.EEmpresaFFA> lista_empresa = empresa.lista_empresa();
+
+            return lista_empresa;
+        }
+
+
+
 
     }
 }
