@@ -245,6 +245,12 @@ namespace ApiBremont.Controllers
         }
 
 
+        [HttpGet("SendReport/{report}")]
+        public ActionResult<Result> SendReport(string report)
+        {
+            Models.UsuarioPRM usuario = new Models.UsuarioPRM();
+            return usuario.SendReport(report);
+        }
 
 
 
