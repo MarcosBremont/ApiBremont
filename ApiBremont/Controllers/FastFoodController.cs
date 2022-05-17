@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using ApiBremont.Models;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using System;
@@ -41,6 +42,13 @@ namespace ApiBremont.Controllers
             return lista_empresa;
         }
 
+
+        [HttpGet("AgregarPedido/{usuario}/{email}/{telefono}/{concuantopagara}/{devuelta}/{direccion}/{producto}")]
+        public ActionResult<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto)
+        {
+            Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
+            return pedidosFFA.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto);
+        }
 
 
 
