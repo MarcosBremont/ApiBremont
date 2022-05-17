@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Modelo.Entidades;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,20 @@ namespace ApiBremont.Controllers
         public FastFoodController(IConfiguration configuration)
         {
             this.ContentRoot = configuration.GetValue<string>(WebHostDefaults.ContentRootKey).ToString();
+        }
+
+        [HttpGet("IniciarSesion/{email}/{password}")]
+        public ActionResult<EUsuarioFFA> IniciarSesion(string email, string password)
+        {
+            Models.Tecnico tecnico = new Models.Tecnico();
+            var response = tecnico.IniciarSesion(usuario, clave, token_firebase);
+
+            if (response.respuesta == "OK")
+            {
+                sesion.Nueva(0, response.token, response.codigo);
+            }
+
+            return response;
         }
 
 
