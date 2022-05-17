@@ -43,11 +43,11 @@ namespace ApiBremont.Controllers
         }
 
 
-        [HttpGet("AgregarPedido/{usuario}/{email}/{telefono}/{concuantopagara}/{devuelta}/{direccion}/{producto}")]
-        public ActionResult<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto)
+        [HttpGet("AgregarPedido/{usuario}/{email}/{telefono}/{concuantopagara}/{devuelta}/{direccion}/{producto}/{latitud}/{longitud}")]
+        public ActionResult<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
         {
             Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
-            return pedidosFFA.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto);
+            return pedidosFFA.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto, latitud, longitud);
         }
 
 

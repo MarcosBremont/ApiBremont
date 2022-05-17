@@ -12,14 +12,14 @@ namespace ApiBremont.Models
     public class PedidosFFA : Conexion
     {
 
-        public Result AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto)
+        public Result AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
         {
             Result result = new Result();
             try
             {
                 using (GetCon())
                 {
-                    MySqlCommand cmd = new MySqlCommand($"IPedido(?,?,?,?,?,?,?)", GetCon());
+                    MySqlCommand cmd = new MySqlCommand($"IPedido(?,?,?,?,?,?,?,?,?)", GetCon());
                     cmd.Parameters.Add("prm_usuario", MySqlDbType.VarChar).Value = usuario;
                     cmd.Parameters.Add("prm_email", MySqlDbType.VarChar).Value = email;
                     cmd.Parameters.Add("prm_telefono", MySqlDbType.VarChar).Value = telefono;
@@ -27,6 +27,8 @@ namespace ApiBremont.Models
                     cmd.Parameters.Add("prm_devuelta", MySqlDbType.Int32).Value = devuelta;
                     cmd.Parameters.Add("prm_direccion", MySqlDbType.VarChar).Value = direccion;
                     cmd.Parameters.Add("prm_producto", MySqlDbType.VarChar).Value = producto;
+                    cmd.Parameters.Add("prm_latitud", MySqlDbType.VarChar).Value = latitud;
+                    cmd.Parameters.Add("prm_longitud", MySqlDbType.VarChar).Value = longitud;
                     Conectar();
                     cmd.ExecuteNonQuery();
                     result.Respuesta = "OK";
