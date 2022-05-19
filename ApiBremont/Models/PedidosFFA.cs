@@ -44,6 +44,28 @@ namespace ApiBremont.Models
 
         }
 
+        public List<Modelo.Entidades.EPedidos> lista_pedidos()
+        {
+            List<Modelo.Entidades.EPedidos> lista_pedidos = new List<Modelo.Entidades.EPedidos>();
+
+            DataTable dt = new DataTable();
+            MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario", GetCon());
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+
+            if (dt.Rows.Count > 0)
+            {
+                var result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+                lista_pedidos = JsonConvert.DeserializeObject<List<Modelo.Entidades.EPedidos>>(result, new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            }
+
+            return lista_pedidos;
+        }
+
 
     }
 }

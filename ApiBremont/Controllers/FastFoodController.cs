@@ -23,14 +23,8 @@ namespace ApiBremont.Controllers
         [HttpGet("IniciarSesion/{email}/{password}")]
         public ActionResult<EUsuarioFFA> IniciarSesion(string email, string password)
         {
-            Models.Tecnico tecnico = new Models.Tecnico();
-            var response = tecnico.IniciarSesion(usuario, clave, token_firebase);
-
-            if (response.respuesta == "OK")
-            {
-                sesion.Nueva(0, response.token, response.codigo);
-            }
-
+            Models.UsuarioFFA usuarioFFA = new Models.UsuarioFFA();
+            var response = usuarioFFA.IniciarSesion(email, password);
             return response;
         }
 
@@ -63,6 +57,17 @@ namespace ApiBremont.Controllers
         {
             Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
             return pedidosFFA.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto, latitud, longitud);
+        }
+
+
+        [HttpGet("ObtenerPedidos")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPedidos>> ObtenerPedidos()
+        {
+            Models.PedidosFFA pedidosffa = new Models.PedidosFFA();
+
+            List<Modelo.Entidades.EPedidos> lista_pedidos = pedidosffa.lista_pedidos();
+
+            return lista_pedidos;
         }
 
 
