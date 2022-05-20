@@ -71,6 +71,13 @@ namespace ApiBremont.Controllers
         }
 
 
+        [HttpGet("RegistrarUsuario/{nombre}/{apellido}/{direccion}/{telefono}/{latitud}/{longitud}/{clave}")]
+        public ActionResult<Result> RegistrarUsuario(string nombre, string apellido, string direccion, string telefono, string correo, string latitud, string longitud, string clave)
+        {
+            Models.UsuarioFFA usuarioFFA = new Models.UsuarioFFA();
+            return usuarioFFA.RegistrarUsuario(nombre, apellido, direccion, telefono, correo, latitud, longitud, clave);
+        }
+
 
     }
 }

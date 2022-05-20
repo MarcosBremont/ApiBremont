@@ -11,6 +11,37 @@ namespace ApiBremont.Models
 {
     public class UsuarioFFA : Conexion
     {
+        public Result RegistrarUsuario(string nombre, string apellido, string direccion,  string telefono, string correo, string latitud, string longitud, string clave)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"IUsuarioFFA(?,?,?,?,?,?,?,?)", GetCon());
+                    cmd.Parameters.Add("prm_nombre", MySqlDbType.VarChar).Value = nombre;
+                    cmd.Parameters.Add("prm_apellido", MySqlDbType.VarChar).Value = apellido;
+                    cmd.Parameters.Add("prm_direccion", MySqlDbType.VarChar).Value = direccion;
+                    cmd.Parameters.Add("prm_telefono", MySqlDbType.VarChar).Value = telefono;
+                    cmd.Parameters.Add("prm_correo", MySqlDbType.VarChar).Value = correo;
+                    cmd.Parameters.Add("prm_latitud", MySqlDbType.VarChar).Value = latitud;
+                    cmd.Parameters.Add("prm_longitud", MySqlDbType.VarChar).Value = longitud;
+                    cmd.Parameters.Add("prm_clave", MySqlDbType.VarChar).Value = clave;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
+
         public EUsuarioFFA IniciarSesion(string email, string password)
         {
             EUsuarioFFA eusuarioffa = new EUsuarioFFA();
