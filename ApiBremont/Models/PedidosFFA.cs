@@ -12,23 +12,45 @@ namespace ApiBremont.Models
     public class PedidosFFA : Conexion
     {
 
-        public Result AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
+        public Result AgregarPedido(int idusuarios)
         {
             Result result = new Result();
             try
             {
                 using (GetCon())
                 {
-                    MySqlCommand cmd = new MySqlCommand($"IPedido(?,?,?,?,?,?,?,?,?)", GetCon());
-                    cmd.Parameters.Add("prm_usuario", MySqlDbType.VarChar).Value = usuario;
-                    cmd.Parameters.Add("prm_email", MySqlDbType.VarChar).Value = email;
-                    cmd.Parameters.Add("prm_telefono", MySqlDbType.VarChar).Value = telefono;
+                    MySqlCommand cmd = new MySqlCommand($"IPedidoFFA(?)", GetCon());
+                    cmd.Parameters.Add("prm_usuario", MySqlDbType.VarChar).Value = idusuarios;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
+
+        public Result ActualizarPedido(int concuantopagara, int devuelta, string latitud, string longitud, string estado_del_pedido, int idusuarios, int idpedidos_fast_food)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"UPedidoFFA(?,?,?,?,?,?,?)", GetCon());
                     cmd.Parameters.Add("prm_concuantopagara", MySqlDbType.Int32).Value = concuantopagara;
                     cmd.Parameters.Add("prm_devuelta", MySqlDbType.Int32).Value = devuelta;
-                    cmd.Parameters.Add("prm_direccion", MySqlDbType.VarChar).Value = direccion;
-                    cmd.Parameters.Add("prm_producto", MySqlDbType.VarChar).Value = producto;
                     cmd.Parameters.Add("prm_latitud", MySqlDbType.VarChar).Value = latitud;
                     cmd.Parameters.Add("prm_longitud", MySqlDbType.VarChar).Value = longitud;
+                    cmd.Parameters.Add("prm_estado_del_pedido", MySqlDbType.VarChar).Value = estado_del_pedido;
+                    cmd.Parameters.Add("prm_idusuarios", MySqlDbType.Int32).Value = idusuarios;
+                    cmd.Parameters.Add("prm_idpedidos_fast_food", MySqlDbType.Int32).Value = idpedidos_fast_food;
                     Conectar();
                     cmd.ExecuteNonQuery();
                     result.Respuesta = "OK";

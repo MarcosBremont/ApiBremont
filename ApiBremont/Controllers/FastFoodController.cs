@@ -52,11 +52,11 @@ namespace ApiBremont.Controllers
         }
 
 
-        [HttpGet("AgregarPedido/{usuario}/{email}/{telefono}/{concuantopagara}/{devuelta}/{direccion}/{producto}/{latitud}/{longitud}")]
-        public ActionResult<Result> AgregarPedido(string usuario, string email, string telefono, int concuantopagara, int devuelta, string direccion, string producto, string latitud, string longitud)
+        [HttpGet("AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}")]
+        public ActionResult<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad)
         {
-            Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
-            return pedidosFFA.AgregarPedido(usuario, email, telefono, concuantopagara, devuelta, direccion, producto, latitud, longitud);
+            Models.PedidoTemporalFFA pedidotemporalFFA = new Models.PedidoTemporalFFA();
+            return pedidotemporalFFA.AgregarPedidoTemporal(idmenu_fast_food,  idusuarios,  cantidad);
         }
 
 
@@ -78,6 +78,31 @@ namespace ApiBremont.Controllers
             return usuarioFFA.RegistrarUsuario(nombre, apellido, direccion, telefono, correo, latitud, longitud, clave);
         }
 
+        [HttpGet("ObtenerCarritoPorUsuario/{idusuarios}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPedidoTemporal>> ObtenerCarritoPorID(int idusuarios)
+        {
+            Models.PedidoTemporalFFA pedidotemporalffa = new Models.PedidoTemporalFFA();
 
+            List<Modelo.Entidades.EPedidoTemporal> lista_pedidoTemporal = pedidotemporalffa.lista_pedidotemporal(idusuarios);
+
+            return lista_pedidoTemporal;
+        }
+
+
+        [HttpGet("AgregarPedido/{idusuarios}")]
+        public ActionResult<Result> AgregarPedido(int idusuarios)
+        {
+            Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
+            return pedidosFFA.AgregarPedido(idusuarios);
+        }
+
+
+
+        [HttpGet("ActualizarPedido/{concuantopagara}/{devuelta}/{latitud}/{longitud}/{estado_del_pedido}/{idusuarios}/{idpedidos_fast_food}")]
+        public ActionResult<Result> ActualizarPedido(int concuantopagara, int devuelta, string latitud, string longitud, string estado_del_pedido, int idusuarios, int idpedidos_fast_food)
+        {
+            Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
+            return pedidosFFA.ActualizarPedido(concuantopagara, devuelta, latitud, longitud, estado_del_pedido, idusuarios, idpedidos_fast_food);
+        }
     }
 }
