@@ -38,13 +38,14 @@ namespace ApiBremont.Models
 
         }
 
-        public List<Modelo.Entidades.EPedidoTemporal> lista_pedidotemporal(int idusuarios)
+        public List<Modelo.Entidades.EPedidoTemporal> lista_pedidotemporal(int idusuarios, int idpedidos)
         {
             List<Modelo.Entidades.EPedidoTemporal> lista_pedido_temporal = new List<Modelo.Entidades.EPedidoTemporal>();
 
             DataTable dt = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SPedidoPorUsuarioNumeroDeOrden(?)", GetCon());
+            MySqlCommand cmd = new MySqlCommand("SPedidoPorUsuarioNumeroDeOrden(?,?)", GetCon());
             cmd.Parameters.Add("prm_idusuarios", MySqlDbType.Int32).Value = idusuarios;
+            cmd.Parameters.Add("prm_idpedidos", MySqlDbType.Int32).Value = idpedidos;
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);
