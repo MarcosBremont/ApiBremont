@@ -78,12 +78,12 @@ namespace ApiBremont.Controllers
             return usuarioFFA.RegistrarUsuario(nombre, apellido, direccion, telefono, correo, latitud, longitud, clave);
         }
 
-        [HttpGet("ObtenerCarritoPorUsuario/{idusuarios}/{idpedidos}")]
-        public ActionResult<IEnumerable<Modelo.Entidades.EPedidoTemporal>> ObtenerCarritoPorID(int idusuarios, int idpedidos)
+        [HttpGet("ObtenerCarritoPorUsuario/{idpedidos}/{idusuarios}/{estado}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPedidoTemporal>> ObtenerCarritoPorID(int idpedidos, int idusuarios, string estado)
         {
             Models.PedidoTemporalFFA pedidotemporalffa = new Models.PedidoTemporalFFA();
 
-            List<Modelo.Entidades.EPedidoTemporal> lista_pedidoTemporal = pedidotemporalffa.lista_pedidotemporal(idusuarios, idpedidos);
+            List<Modelo.Entidades.EPedidoTemporal> lista_pedidoTemporal = pedidotemporalffa.lista_pedidotemporal(idpedidos, idusuarios, estado);
 
             return lista_pedidoTemporal;
         }
