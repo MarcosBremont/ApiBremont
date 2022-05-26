@@ -104,5 +104,17 @@ namespace ApiBremont.Controllers
             Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
             return pedidosFFA.ActualizarPedido(concuantopagara, devuelta, latitud, longitud, estado_del_pedido, idusuarios, idpedidos_fast_food);
         }
+
+
+        [HttpGet("SNumeroDeOrdenGeneral/{idusuarios}/{estado}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPedidos>> ObtenerCarritoPorID(int idusuarios, string estado)
+        {
+            Models.PedidosFFA pedidoffa = new Models.PedidosFFA();
+
+            List<Modelo.Entidades.EPedidos> lista_pedido = pedidoffa.lista_numerodeorden(idusuarios, estado);
+
+            return lista_pedido;
+        }
+
     }
 }
