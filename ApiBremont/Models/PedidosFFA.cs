@@ -66,12 +66,14 @@ namespace ApiBremont.Models
 
         }
 
-        public List<Modelo.Entidades.EPedidos> lista_pedidos()
+        public List<Modelo.Entidades.EPedidos> lista_pedidos(string estado_del_pedido, int idusuarios)
         {
             List<Modelo.Entidades.EPedidos> lista_pedidos = new List<Modelo.Entidades.EPedidos>();
 
             DataTable dt = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario", GetCon());
+            MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario(?,?)", GetCon());
+            cmd.Parameters.Add("prm_estado_del_pedido", MySqlDbType.String).Value = estado_del_pedido;
+            cmd.Parameters.Add("prm_usuario", MySqlDbType.Int32).Value = idusuarios;
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);
