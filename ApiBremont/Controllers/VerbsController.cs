@@ -47,7 +47,7 @@ namespace ApiBremont.Controllers
             return posiciones.EnterToTheTournament(nombrePersona, numeroVerbosCorrectos, direccion);
         }
 
-        
+
         [HttpGet("SendEmails/{email}")]
         public ActionResult<Result> SendEmails(string email)
         {
@@ -55,7 +55,7 @@ namespace ApiBremont.Controllers
             return usuario.SendEmails(email);
         }
 
-        [HttpGet("WasWereSentencesprm/")] 
+        [HttpGet("WasWereSentencesprm/")]
         public ActionResult<IEnumerable<Modelo.Entidades.EWasWereSentencesprm>> ConsultarWasWereSentencesprm()
         {
             Models.WasWereSentencesprm wasweresentencesprm = new Models.WasWereSentencesprm();
@@ -80,7 +80,7 @@ namespace ApiBremont.Controllers
         {
             Models.CompleteSentences completesentences = new Models.CompleteSentences();
 
-            List<Modelo.Entidades.ECompleteSentences> Lista_de_complete_sentences = completesentences.Lista_de_Complete_Sentences ();
+            List<Modelo.Entidades.ECompleteSentences> Lista_de_complete_sentences = completesentences.Lista_de_Complete_Sentences();
 
 
             return Lista_de_complete_sentences;
@@ -122,7 +122,7 @@ namespace ApiBremont.Controllers
         {
             Models.SimplePresent simplepresent = new Models.SimplePresent();
 
-            List<Modelo.Entidades.ESimplePresent> Lista_de_simple_present= simplepresent.Lista_de_simple_present();
+            List<Modelo.Entidades.ESimplePresent> Lista_de_simple_present = simplepresent.Lista_de_simple_present();
 
             return Lista_de_simple_present;
         }
@@ -254,8 +254,27 @@ namespace ApiBremont.Controllers
 
 
 
+        [HttpGet("SuperlativesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.ESuperlaivesSentences>> ConsultarSuperlativesSentencesPrm()
+        {
+            Models.SuperlativesSentences superlatives = new Models.SuperlativesSentences();
+
+            List<Modelo.Entidades.ESuperlaivesSentences> Lista_de_superlatives_sentences = superlatives.Lista_de_superlatives_Sentences();
 
 
+            return Lista_de_superlatives_sentences;
+
+        }
+
+        [HttpGet("SuperlativesAdjectivesPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.ESuperlatives>> ConsultarSuperlativesadjectives()
+        {
+            Models.AdjectivesSuperlatives adjectivessuperlatives = new Models.AdjectivesSuperlatives();
+
+            List <Modelo.Entidades.ESuperlatives> Lista_de_adjectives = adjectivessuperlatives.Lista_de_AdjectivesSuperlatives();
+
+            return Lista_de_adjectives;
+        }
 
     }
 }
