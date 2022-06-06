@@ -276,5 +276,16 @@ namespace ApiBremont.Controllers
             return Lista_de_adjectives;
         }
 
+        [HttpGet("VideosPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVideos>> ListaVideos()
+        {
+            Models.VideosPRM videosprm = new Models.VideosPRM();
+
+            List<Modelo.Entidades.EVideos> lista_videos = videosprm.Lista_Videos();
+
+            return lista_videos;
+        }
+
+
     }
 }
