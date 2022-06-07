@@ -286,6 +286,16 @@ namespace ApiBremont.Controllers
             return lista_videos;
         }
 
+        [HttpGet("AudiosPRM/")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EAudios>> ListaAudios()
+        {
+            Models.AudiosPRM audiosprm = new Models.AudiosPRM();
+
+            List<Modelo.Entidades.EAudios> listaAudios = audiosprm.Lista_audios();
+
+            return listaAudios;
+        }
+
 
     }
 }
