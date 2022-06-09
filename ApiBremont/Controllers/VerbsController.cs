@@ -297,5 +297,21 @@ namespace ApiBremont.Controllers
         }
 
 
+
+        [HttpGet("ExercisesPRM/{category}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EExercisesByCategory>> ListOfExercisesByCategory(string category)
+        {
+            Models.ExercisesByCategory exercisesByCategory = new Models.ExercisesByCategory();
+
+            List<Modelo.Entidades.EExercisesByCategory> list_exercises = exercisesByCategory.List_Of_ExercisesByCategory(category);
+
+            return list_exercises;
+        }
+
+
+
+
+
+
     }
 }
