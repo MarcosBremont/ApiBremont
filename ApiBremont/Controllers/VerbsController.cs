@@ -308,6 +308,16 @@ namespace ApiBremont.Controllers
             return list_exercises;
         }
 
+        [HttpGet("HowToUsePRM/{howtouse_category}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EHowToUseByCategory>> ListOfExamplesByCategory(string howtouse_category)
+        {
+            Models.HowToUse howtouse = new Models.HowToUse();
+
+            List<Modelo.Entidades.EHowToUseByCategory> list_examples = howtouse.List_Of_ExamplesByCategory(howtouse_category);
+
+            return list_examples;
+        }
+
 
 
 
