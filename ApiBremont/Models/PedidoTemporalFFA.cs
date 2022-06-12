@@ -12,17 +12,18 @@ namespace ApiBremont.Models
     public class PedidoTemporalFFA : Conexion
     {
 
-        public Result AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad)
+        public Result AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad, string descripcion)
         {
             Result result = new Result();
             try
             {
                 using (GetCon())
                 {
-                    MySqlCommand cmd = new MySqlCommand($"IPedidoProductosFFA(?,?,?)", GetCon());
+                    MySqlCommand cmd = new MySqlCommand($"IPedidoProductosFFA(?,?,?,?)", GetCon());
                     cmd.Parameters.Add("prm_idmenu_fast_food", MySqlDbType.Int32).Value = idmenu_fast_food;
                     cmd.Parameters.Add("prm_idusuarios", MySqlDbType.Int32).Value = idusuarios;
                     cmd.Parameters.Add("prm_cantidad", MySqlDbType.Int32).Value = cantidad;
+                    cmd.Parameters.Add("prm_descripcion", MySqlDbType.String).Value = descripcion;
                     Conectar();
                     cmd.ExecuteNonQuery();
                     result.Respuesta = "OK";

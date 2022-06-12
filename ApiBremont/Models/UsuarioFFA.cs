@@ -11,7 +11,7 @@ namespace ApiBremont.Models
 {
     public class UsuarioFFA : Conexion
     {
-        public Result RegistrarUsuario(string nombre, string apellido, string direccion,  string telefono, string correo, string latitud, string longitud, string clave)
+        public Result RegistrarUsuario(string nombre, string apellido, string direccion, string telefono, string correo, string latitud, string longitud, string clave)
         {
             Result result = new Result();
             try
@@ -81,5 +81,35 @@ namespace ApiBremont.Models
             return eusuarioffa;
         }
 
+        public Result ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string correo, string clave, int idusuarios)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"UUsuariosPorIdUsuarioFFA(?,?,?,?,?,?,?)", GetCon());
+                    cmd.Parameters.Add("prm_nombre", MySqlDbType.VarChar).Value = nombre;
+                    cmd.Parameters.Add("prm_apellido", MySqlDbType.VarChar).Value = apellido;
+                    cmd.Parameters.Add("prm_direccion", MySqlDbType.VarChar).Value = direccion;
+                    cmd.Parameters.Add("prm_telefono", MySqlDbType.VarChar).Value = telefono;
+                    cmd.Parameters.Add("prm_correo", MySqlDbType.VarChar).Value = correo;
+                    cmd.Parameters.Add("prm_clave", MySqlDbType.VarChar).Value = clave;
+                    cmd.Parameters.Add("prm_idusuarios", MySqlDbType.Int32).Value = idusuarios;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
     }
+
 }

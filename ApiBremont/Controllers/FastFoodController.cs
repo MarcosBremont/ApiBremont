@@ -52,11 +52,11 @@ namespace ApiBremont.Controllers
         }
 
 
-        [HttpGet("AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}")]
-        public ActionResult<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad)
+        [HttpGet("AgregarPedidoTemporal/{idmenu_fast_food}/{idusuarios}/{cantidad}/{descripcion}")]
+        public ActionResult<Result> AgregarPedidoTemporal(int idmenu_fast_food, int idusuarios, int cantidad, string descripcion)
         {
             Models.PedidoTemporalFFA pedidotemporalFFA = new Models.PedidoTemporalFFA();
-            return pedidotemporalFFA.AgregarPedidoTemporal(idmenu_fast_food,  idusuarios,  cantidad);
+            return pedidotemporalFFA.AgregarPedidoTemporal(idmenu_fast_food, idusuarios, cantidad, descripcion);
         }
 
 
@@ -114,6 +114,13 @@ namespace ApiBremont.Controllers
             List<Modelo.Entidades.EPedidos> lista_pedido = pedidoffa.lista_numerodeorden(idusuarios, estado);
 
             return lista_pedido;
+        }
+
+        [HttpGet("ActualizarUsuario/{nombre}/{apellido}/{direccion}/{telefono}/{correo}/{clave}/{idusuarios}")]
+        public ActionResult<Result> ActualizarUsuario(string nombre, string apellido, string direccion, string telefono, string correo, string clave, int idusuarios)
+        {
+            Models.UsuarioFFA usuarioFFA = new Models.UsuarioFFA();
+            return usuarioFFA.ActualizarUsuario(nombre, apellido, direccion, telefono, correo, clave, idusuarios);
         }
 
     }
