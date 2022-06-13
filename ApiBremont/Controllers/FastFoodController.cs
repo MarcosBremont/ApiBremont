@@ -127,7 +127,7 @@ namespace ApiBremont.Controllers
         public ActionResult<Result> AgregarProductoAlMenu(string nombre, int precio, string disponible, string foto, string descripcion)
         {
             Models.Menu menu = new Models.Menu();
-            return menu.AgregarProductoAlMenu(nombre, precio, disponible, foto, descripcion);
+            return menu.AgregarProductoAlMenu(nombre, precio, disponible, foto, descripcion); 
         }
 
     }
