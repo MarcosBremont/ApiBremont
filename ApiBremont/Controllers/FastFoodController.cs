@@ -123,5 +123,12 @@ namespace ApiBremont.Controllers
             return usuarioFFA.ActualizarUsuario(nombre, apellido, direccion, telefono, correo, clave, idusuarios);
         }
 
+        [HttpGet("AgregarProductoAlMenu/{nombre}/{precio}/{disponible}/{foto}/{descripcion}")]
+        public ActionResult<Result> AgregarProductoAlMenu(string nombre, int precio, string disponible, string foto, string descripcion)
+        {
+            Models.Menu menu = new Models.Menu();
+            return menu.AgregarProductoAlMenu(nombre, precio, disponible, foto, descripcion);
+        }
+
     }
 }

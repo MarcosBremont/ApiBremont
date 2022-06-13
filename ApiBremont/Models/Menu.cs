@@ -32,5 +32,34 @@ namespace ApiBremont.Models
             return lista_menu;
         }
 
+
+        public Result AgregarProductoAlMenu(string nombre, int precio, string disponible, string foto, string descripcion)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"IProducto_menu_FFA(?,?,?,?,?)", GetCon());
+                    cmd.Parameters.Add("prm_nombre", MySqlDbType.VarChar).Value = nombre;
+                    cmd.Parameters.Add("prm_precio", MySqlDbType.Int32).Value = precio;
+                    cmd.Parameters.Add("prm_disponible", MySqlDbType.VarChar).Value = disponible;
+                    cmd.Parameters.Add("prm_foto", MySqlDbType.VarChar).Value = foto;
+                    cmd.Parameters.Add("prm_descripcion", MySqlDbType.VarChar).Value = descripcion;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
+
     }
 }
