@@ -12,7 +12,7 @@ namespace ApiBremont.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FastFoodController : ControllerBase
+    public class FastFoodController : ControlBase
     {
         private string ContentRoot { get; set; }
         public FastFoodController(IConfiguration configuration)
@@ -129,6 +129,27 @@ namespace ApiBremont.Controllers
             Models.Menu menu = new Models.Menu();
             return menu.AgregarProductoAlMenu(nombre, precio, disponible, foto, descripcion); 
         }
+
+        [HttpPost("GrabarImagen")]
+        async public Task<ActionResult> GrabarImagen([FromBody] EMenu menu)
+        {
+            var nombreFoto = await GrabarFoto(menu.foto);
+
+            if (nombreFoto == "ERROR")
+            {
+                menu = new EMenu();
+                menu.result = "ERROR";
+            }
+            else
+            {
+                // grabar el nombre de la imagen en cliente
+                menu = new Menu().GrabarUrlFotoPerfil(menu.idmenu_fast_food, nombreFoto);
+            }
+
+            return new JsonResult(menu);
+        }
+
+
 
     }
 }

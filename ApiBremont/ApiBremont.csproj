@@ -6,11 +6,16 @@
 
   <ItemGroup>
     <PackageReference Include="MySql.Data" Version="8.0.28" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Modelo\Modelo.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Img\" />
   </ItemGroup>
 </Project>

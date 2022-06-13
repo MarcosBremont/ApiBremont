@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ApiBremont.Models;
+using System.IO;
+using SixLabors.ImageSharp;
 
 namespace ApiBremont.Controllers
 {
@@ -33,5 +35,7 @@ namespace ApiBremont.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
     }
 }

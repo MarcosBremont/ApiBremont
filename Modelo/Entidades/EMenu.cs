@@ -12,5 +12,7 @@ namespace Modelo.Entidades
         public string disponible { get; set; }
         public string foto { get; set; }
         public string descripcion { get; set; }
+        public string result { get; set; }
+        public bool encontrado { get; set; }
     }
 }
