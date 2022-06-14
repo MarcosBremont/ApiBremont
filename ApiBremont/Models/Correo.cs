@@ -10,7 +10,7 @@ namespace ApiBremont.Models
         #region Propiedades
         private string Servidor { get; set; } = "smtp.gmail.com";
         private string CorreoEnvia { get; set; } = "simplerentcarapp@gmail.com";
-        private string ClaveEnvia { get; set; } = "simple2022@";
+        private string ClaveEnvia { get; set; } = "jxiehtawdiknlnzd";
         private int Puerto { get; set; } = 25;
 
         #endregion
