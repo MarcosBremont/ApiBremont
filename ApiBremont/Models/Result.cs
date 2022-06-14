@@ -9,5 +9,6 @@ namespace ApiBremont.Models
     {
         public string Respuesta { get; set; }
         public string Mensaje { get; set; }
+        public int Id { get; set; }
     }
 }

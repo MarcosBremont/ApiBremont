@@ -44,14 +44,15 @@ namespace ApiBremont.Models
             {
                 using (GetCon())
                 {
-                    MySqlCommand cmd = new MySqlCommand($"IProducto_menu_FFA(?,?,?,?,?)", GetCon());
-                    cmd.Parameters.Add("prm_nombre", MySqlDbType.VarChar).Value = nombre;
-                    cmd.Parameters.Add("prm_precio", MySqlDbType.Int32).Value = precio;
-                    cmd.Parameters.Add("prm_disponible", MySqlDbType.VarChar).Value = disponible;
-                    cmd.Parameters.Add("prm_foto", MySqlDbType.VarChar).Value = foto;
-                    cmd.Parameters.Add("prm_descripcion", MySqlDbType.VarChar).Value = descripcion;
+                    MySqlCommand cmd = new MySqlCommand($"IProducto_menu_FFA", GetCon());
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("prm_nombre", nombre);
+                    cmd.Parameters.AddWithValue("prm_precio", precio);
+                    cmd.Parameters.AddWithValue("prm_disponible", disponible);
+                    cmd.Parameters.AddWithValue("prm_foto", foto);
+                    cmd.Parameters.AddWithValue("prm_descripcion", descripcion);
                     Conectar();
-                    cmd.ExecuteNonQuery();
+                    result.Id = int.Parse(cmd.ExecuteScalar().ToString());
                     result.Respuesta = "OK";
                 }
             }
