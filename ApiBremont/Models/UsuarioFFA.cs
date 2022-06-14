@@ -110,6 +110,20 @@ namespace ApiBremont.Models
             return result;
 
         }
+
+        public void ActualizarClave(string correo, string clave)
+        {
+            string sql = "UClaveUsuario";
+            MySqlCommand cmd = new MySqlCommand(sql, GetCon());
+            cmd.CommandType = System.Data.CommandType.StoredProcedure;
+            cmd.Parameters.Add("@prm_correo", MySqlDbType.Text).Value = correo;
+            cmd.Parameters.Add("@prm_clave", MySqlDbType.Text).Value = clave;
+            Conectar();
+            cmd.ExecuteNonQuery();
+            Desconectar();
+
+        }
+
     }
 
 }

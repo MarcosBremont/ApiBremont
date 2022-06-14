@@ -149,7 +149,31 @@ namespace ApiBremont.Controllers
             return new JsonResult(menu);
         }
 
+        [HttpPost("ResetearClave")]
+        public IActionResult ResetearClave([FromBody] EUsuarioFFA datos)
+        {
+            try
+            {
 
+                UsuarioFFA Usuario = new UsuarioFFA();
+                // validar si el correo está registrado
+
+                var nuevaClave = Guid.NewGuid().ToString().Substring(0, 6);
+                Usuario.ActualizarClave(datos.correo, nuevaClave);
+                // enviar correo de válidación
+
+                new Correo().EnviarResetearClave(datos.correo, nuevaClave);
+
+
+                return new JsonResult(datos);
+            }
+            catch (Exception ex)
+            {
+                //WriteExeption(ex);
+                return new JsonResult(new EBase() { HayError = true, Mensaje = "No se pudo realizar la operación solicitada, intentelo mas tarde." });
+            }
+
+        }
 
     }
 }
