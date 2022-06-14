@@ -143,7 +143,7 @@ namespace ApiBremont.Controllers
             else
             {
                 // grabar el nombre de la imagen en cliente
-                menu = new Menu().GrabarUrlFotoPerfil(menu.idmenu_fast_food, nombreFoto);
+                menu = new Menu().GrabarUrlFotoPerfil(menu.idmenu_fast_food, "http://apibremont.tecnolora.com/images/" + nombreFoto);
             }
 
             return new JsonResult(menu);
