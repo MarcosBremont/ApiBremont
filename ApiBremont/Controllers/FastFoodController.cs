@@ -173,5 +173,31 @@ namespace ApiBremont.Controllers
 
         }
 
+        [HttpGet("EnviarNotificacion/{mensaje}/{disponibilidad}")]
+        public ActionResult<Result> EnviarNotificaciones(string mensaje, string disponibilidad)
+        {
+            Models.EmpresaFFA empresa = new Models.EmpresaFFA();
+            return empresa.EnviarNotificacion(mensaje, disponibilidad);
+        }
+
+        [HttpGet("ActualizarNotificacion/{idnotificaciones_empresa}/{disponibilidad}")]
+        public ActionResult<Result> ActualizarNotificacion(int idnotificaciones_empresa, string disponibilidad)
+        {
+            Models.EmpresaFFA empresa = new Models.EmpresaFFA();
+            return empresa.ActualizarNotificacion(idnotificaciones_empresa, disponibilidad);
+        }
+
+
+        [HttpGet("SNotificacionesFFA/{idnotificaciones_empresa}/{disponibilidad}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.ENotificaciones_empresa>> ObtenerNotificaciones(int idnotificaciones_empresa, string disponibilidad)
+        {
+            Models.EmpresaFFA empresaffa = new Models.EmpresaFFA();
+
+            List<Modelo.Entidades.ENotificaciones_empresa> lista_notificaciones = empresaffa.lista_notificaciones(idnotificaciones_empresa, disponibilidad);
+
+            return lista_notificaciones;
+        }
+
+
     }
 }
