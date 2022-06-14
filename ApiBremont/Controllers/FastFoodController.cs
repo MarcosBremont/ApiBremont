@@ -150,7 +150,7 @@ namespace ApiBremont.Controllers
         }
 
         [HttpPost("ResetearClave")]
-        public IActionResult ResetearClave([FromBody] EUsuarioFFA datos)
+        public ActionResult<Result> ResetearClave([FromBody] EUsuarioFFA datos)
         {
             try
             {
@@ -159,13 +159,11 @@ namespace ApiBremont.Controllers
                 // validar si el correo está registrado
 
                 var nuevaClave = Guid.NewGuid().ToString().Substring(0, 6);
-                Usuario.ActualizarClave(datos.correo, nuevaClave);
-                // enviar correo de válidación
-
                 new Correo().EnviarResetearClave(datos.correo, nuevaClave);
 
+                return Usuario.ActualizarClave(datos.correo, nuevaClave);
+                // enviar correo de válidación
 
-                return new JsonResult(datos);
             }
             catch (Exception ex)
             {

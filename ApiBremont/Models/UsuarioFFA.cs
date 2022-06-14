@@ -111,8 +111,10 @@ namespace ApiBremont.Models
 
         }
 
-        public void ActualizarClave(string correo, string clave)
+        public Result ActualizarClave(string correo, string clave)
         {
+            Result result = new Result();
+
             string sql = "UClaveUsuario";
             MySqlCommand cmd = new MySqlCommand(sql, GetCon());
             cmd.CommandType = System.Data.CommandType.StoredProcedure;
@@ -120,7 +122,11 @@ namespace ApiBremont.Models
             cmd.Parameters.Add("@prm_clave", MySqlDbType.Text).Value = clave;
             Conectar();
             cmd.ExecuteNonQuery();
+            result.Respuesta = "OK";
             Desconectar();
+
+            return result;
+
 
         }
 
