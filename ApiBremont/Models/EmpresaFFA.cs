@@ -1,4 +1,5 @@
-﻿using MySql.Data.MySqlClient;
+﻿using Modelo.Entidades;
+using MySql.Data.MySqlClient;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -31,6 +32,63 @@ namespace ApiBremont.Models
 
             return lista_empresa;
         }
+
+        public EEmpresaFFA GrabarUrlFotoPerfil(int idempresa, string logo_empresa)
+        {
+            EEmpresaFFA eempresaffa = new EEmpresaFFA();
+            try
+            {
+                // Actualizar Foto
+                var sql = @"update empresa_fast_food set logo_empresa=@logo_empresa where idempresa = @idempresa";
+                MySqlCommand cmd = new MySqlCommand(sql, GetCon());
+                cmd.Parameters.Add("@idempresa", MySqlDbType.Int32).Value = idempresa;
+                cmd.Parameters.Add("@logo_empresa", MySqlDbType.Text).Value = logo_empresa;
+                Conectar();
+                cmd.ExecuteNonQuery();
+                Desconectar();
+
+                try
+                {
+                    sql = @"SELECT concat('C:/inetpub/wwwroot/apibremont.tecnolora.com/wwwroot','/images/',m.foto) foto FROM empresa_fast_food e
+                                where e.idempresa = @idempresa";
+                    cmd = new MySqlCommand(sql, GetCon());
+                    cmd.Parameters.Add("@idempresa", MySqlDbType.Int32).Value = idempresa;
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmd;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    if (dt.Rows.Count > 0)
+                    {
+                        var result = JsonConvert.SerializeObject(dt, Formatting.Indented).Replace("[", "").Replace("]", "");
+                        eempresaffa = JsonConvert.DeserializeObject<EEmpresaFFA>(result, new JsonSerializerSettings()
+                        {
+                            NullValueHandling = NullValueHandling.Ignore
+                        });
+                        eempresaffa.encontrado = true;
+                        eempresaffa.result = "OK";
+                    }
+                    else
+                    {
+                        eempresaffa.result = "ERROR";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    eempresaffa.result = "ERROR";
+                }
+
+                return eempresaffa;
+            }
+            catch (Exception ex)
+            {
+                WriteException(ex);
+                eempresaffa.result = "ERROR";
+            }
+
+            return eempresaffa;
+        }
+
 
         public List<Modelo.Entidades.ENotificaciones_empresa> lista_notificaciones(int idnotificaciones_empresa, string disponibilidad)
         {
