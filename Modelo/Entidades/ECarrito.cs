@@ -7,6 +7,7 @@ namespace Modelo.Entidades
     public class EPedidos
     {
         public string nombre { get; set; }
+        public string nombreusuario { get; set; }
         public int precio { get; set; }
         public string disponible { get; set; }
         public string descripcion { get; set; }
