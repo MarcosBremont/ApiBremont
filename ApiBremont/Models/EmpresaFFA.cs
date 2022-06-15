@@ -107,6 +107,39 @@ namespace ApiBremont.Models
         }
 
 
+        public Result ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"UEmpresaFFA(?,?,?,?,?,?,?,?)", GetCon());
+                    cmd.Parameters.Add("prm_nombre", MySqlDbType.VarChar).Value = nombreEmpresa;
+                    cmd.Parameters.Add("prm_direccion", MySqlDbType.VarChar).Value = DireccionEmpresa;
+                    cmd.Parameters.Add("prm_telefono", MySqlDbType.VarChar).Value = TelefonoEmpresa;
+                    cmd.Parameters.Add("prm_whatsapp", MySqlDbType.VarChar).Value = WhatsappEmpresa;
+                    cmd.Parameters.Add("prm_correo", MySqlDbType.VarChar).Value = CorreoEmpresa;
+                    cmd.Parameters.Add("prm_clave", MySqlDbType.VarChar).Value = ClaveEMpresa;
+                    cmd.Parameters.Add("prm_envio", MySqlDbType.VarChar).Value = PrecioEnvio;
+                    cmd.Parameters.Add("prm_idnotificaciones_empresa", MySqlDbType.Int32).Value = idempresa;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
+
+
+
 
 
     }

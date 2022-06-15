@@ -205,5 +205,12 @@ namespace ApiBremont.Controllers
             return pedidosFFA.ActualizarProgresoPedido(idpedidos_fast_food, estado_del_pedido);
         }
 
+        [HttpGet("ActualizarEmpresa/{nombreEmpresa}/{DireccionEmpresa}/{TelefonoEmpresa}/{WhatsappEmpresa}/{CorreoEmpresa}/{PrecioEnvio}/{ClaveEMpresa}/{idempresa}")]
+        public ActionResult<Result> ActualizarEmpresa(string nombreEmpresa, string DireccionEmpresa, string TelefonoEmpresa, string WhatsappEmpresa, string CorreoEmpresa, string PrecioEnvio, string ClaveEMpresa, int idempresa)
+        {
+            Models.EmpresaFFA empresaFFA = new Models.EmpresaFFA();
+            return empresaFFA.ActualizarEmpresa(nombreEmpresa, DireccionEmpresa, TelefonoEmpresa, WhatsappEmpresa, CorreoEmpresa, PrecioEnvio, ClaveEMpresa, idempresa);
+        }
+
     }
 }
