@@ -30,8 +30,8 @@ namespace ApiBremont.Controllers
 
                 //var empresa = new Empresa().Get();
                 var rutaFoto = "C:/inetpub/wwwroot/apibremont.tecnolora.com/wwwroot/Images";
-                if (!Directory.Exists(rutaFoto))
-                    Directory.CreateDirectory(rutaFoto);
+                //if (!Directory.Exists(rutaFoto))
+                //    Directory.CreateDirectory(rutaFoto);
 
                 byte[] bytes = Convert.FromBase64String(base64);
 
