@@ -9,6 +9,8 @@ namespace Modelo.Entidades
         public string nombre { get; set; }
         public string nombreusuario { get; set; }
         public int precio { get; set; }
+        public int total_por_producto { get; set; }
+        public string telefono { get; set; }
         public string disponible { get; set; }
         public string descripcion { get; set; }
         public string foto { get; set; }
@@ -17,6 +19,7 @@ namespace Modelo.Entidades
         public string email { get; set; }
         public string cedula { get; set; }
         public int concuantopagara { get; set; }
+        public int cantidad { get; set; }
         public int devuelta { get; set; }
         public string direccion { get; set; }
         public string producto { get; set; }
