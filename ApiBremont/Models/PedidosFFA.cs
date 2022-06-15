@@ -114,5 +114,31 @@ namespace ApiBremont.Models
             return lista_numerodeorden;
         }
 
+
+        public Result ActualizarProgresoPedido(int idpedidos_fast_food, string estado_del_pedido)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"UProgresoPedido(?,?)", GetCon());
+                    cmd.Parameters.Add("prm_idpedidos_fast_food", MySqlDbType.Int32).Value = idpedidos_fast_food;
+                    cmd.Parameters.Add("prm_estado_del_pedido", MySqlDbType.VarChar).Value = estado_del_pedido;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
+        }
+
     }
 }

@@ -6,6 +6,7 @@ namespace Modelo.Entidades
 {
     public class EEmpresaFFA
     {
+        public int idempresa { get; set; }
         public string nombre { get; set; }
         public string rnc { get; set; }
         public string direccion { get; set; }
@@ -19,5 +20,6 @@ namespace Modelo.Entidades
         public string facebook { get; set; }
         public string encargado_empresa { get; set; }
         public string envio { get; set; }
+        public string logo_empresa { get; set; }
     }
 }

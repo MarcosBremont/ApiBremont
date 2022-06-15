@@ -198,6 +198,12 @@ namespace ApiBremont.Controllers
             return lista_notificaciones;
         }
 
+        [HttpGet("UProgresoPedido/{idpedidos_fast_food}/{estado_del_pedido}")]
+        public ActionResult<Result> ActualizarPedido(int idpedidos_fast_food, string estado_del_pedido)
+        {
+            Models.PedidosFFA pedidosFFA = new Models.PedidosFFA();
+            return pedidosFFA.ActualizarProgresoPedido(idpedidos_fast_food, estado_del_pedido);
+        }
 
     }
 }
