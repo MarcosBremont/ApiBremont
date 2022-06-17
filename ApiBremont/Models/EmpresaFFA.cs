@@ -96,12 +96,12 @@ namespace ApiBremont.Models
 
             DataTable dt = new DataTable();
             MySqlCommand cmd = new MySqlCommand($"SNotificacionesFFA(?,?)", GetCon());
-            cmd.Parameters.Add("prm_idnotificaciones_empresa", MySqlDbType.VarChar).Value = idnotificaciones_empresa;
+            cmd.Parameters.Add("prm_idnotificaciones_empresa", MySqlDbType.Int32).Value = idnotificaciones_empresa;
             cmd.Parameters.Add("prm_disponibilidad", MySqlDbType.VarChar).Value = disponibilidad;
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);
-
+             
             if (dt.Rows.Count > 0)
             {
                 var result = JsonConvert.SerializeObject(dt, Formatting.Indented);
