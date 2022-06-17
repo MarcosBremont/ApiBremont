@@ -154,16 +154,15 @@ namespace ApiBremont.Controllers
         {
             var nombreFoto = await GrabarFoto(eempresa.logo_empresa);
 
-            //if (nombreFoto == "ERROR")
-            //{
-                eempresa = new EEmpresaFFA();
+            if (nombreFoto == "ERROR")
+            {
                 eempresa.result = nombreFoto;
-            //}
-            //else
-            //{
+            }
+            else
+            {
                 // grabar el nombre de la imagen en cliente
                 eempresa = new EmpresaFFA().GrabarUrlFotoPerfil(eempresa.idempresa, "http://apibremont.tecnolora.com/images/" + nombreFoto);
-            //}
+            }
 
             return new JsonResult(eempresa);
         }

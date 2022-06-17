@@ -49,7 +49,7 @@ namespace ApiBremont.Models
 
                 try
                 {
-                    sql = @"SELECT concat('C:/inetpub/wwwroot/apibremont.tecnolora.com/wwwroot','/images/',m.foto) foto FROM empresa_fast_food e
+                    sql = @"SELECT concat('C:/inetpub/wwwroot/apibremont.tecnolora.com/wwwroot','/images/',e.logo_empresa) logo_empresa FROM empresa_fast_food e
                                 where e.idempresa = @idempresa";
                     cmd = new MySqlCommand(sql, GetCon());
                     cmd.Parameters.Add("@idempresa", MySqlDbType.Int32).Value = idempresa;
@@ -57,6 +57,7 @@ namespace ApiBremont.Models
                     da.SelectCommand = cmd;
                     DataTable dt = new DataTable();
                     da.Fill(dt);
+
                     if (dt.Rows.Count > 0)
                     {
                         var result = JsonConvert.SerializeObject(dt, Formatting.Indented).Replace("[", "").Replace("]", "");

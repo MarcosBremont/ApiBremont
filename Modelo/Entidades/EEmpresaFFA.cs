@@ -19,8 +19,9 @@ namespace Modelo.Entidades
         public string instagram { get; set; }
         public string facebook { get; set; }
         public string encargado_empresa { get; set; }
-        public string envio { get; set; }
+        public int envio { get; set; }
         public string result { get; set; }
+        public string mensaje { get; set; }
         public bool encontrado { get; set; }
         public string logo_empresa { get; set; }
     }

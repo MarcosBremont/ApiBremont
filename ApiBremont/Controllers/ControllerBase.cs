@@ -43,7 +43,7 @@ namespace ApiBremont.Controllers
             }
             catch (Exception ex)
             {
-                nombreFoto = "asasasa" + ex;
+                nombreFoto = "ERROR";
             }
             return nombreFoto;
         }
