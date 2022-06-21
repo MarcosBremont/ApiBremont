@@ -69,8 +69,6 @@ namespace ApiBremont.Models
         public List<Modelo.Entidades.EPedidos> lista_pedidos(string estado_del_pedido, int idusuarios, DateTime fechadesde, DateTime fechahasta)
         {
             List<Modelo.Entidades.EPedidos> lista_pedidos = new List<Modelo.Entidades.EPedidos>();
-            fechadesde.ToString("yyyy/MM/dd HH:mm:ss");
-            fechahasta.ToString("yyyy/MM/dd HH:mm:ss");
 
             DataTable dt = new DataTable();
             MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario(?,?,?,?)", GetCon());
