@@ -26,5 +26,6 @@ namespace Modelo.Entidades
         public string latitud { get; set; }
         public string longitud { get; set; }
         public string estado_del_pedido { get; set; }
+        public DateTime fecha_hora { get; set; }
     }
 }
