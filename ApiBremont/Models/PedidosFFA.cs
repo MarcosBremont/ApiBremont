@@ -66,14 +66,18 @@ namespace ApiBremont.Models
 
         }
 
-        public List<Modelo.Entidades.EPedidos> lista_pedidos(string estado_del_pedido, int idusuarios)
+        public List<Modelo.Entidades.EPedidos> lista_pedidos(string estado_del_pedido, int idusuarios, DateTime fechadesde, DateTime fechahasta)
         {
             List<Modelo.Entidades.EPedidos> lista_pedidos = new List<Modelo.Entidades.EPedidos>();
+            fechadesde.ToString("yyyy/MM/dd HH:mm:ss");
+            fechahasta.ToString("yyyy/MM/dd HH:mm:ss");
 
             DataTable dt = new DataTable();
-            MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario(?,?)", GetCon());
+            MySqlCommand cmd = new MySqlCommand("SListaPedidosPorUsuario(?,?,?,?)", GetCon());
             cmd.Parameters.Add("prm_estado_del_pedido", MySqlDbType.String).Value = estado_del_pedido;
-            cmd.Parameters.Add("prm_usuario", MySqlDbType.Int32).Value = idusuarios;
+            cmd.Parameters.Add("prm_idusuarios", MySqlDbType.String).Value = idusuarios;
+            cmd.Parameters.Add("prm_fecha_inicial", MySqlDbType.DateTime).Value = fechadesde;
+            cmd.Parameters.Add("prm_fecha_final", MySqlDbType.DateTime).Value = fechahasta;
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);

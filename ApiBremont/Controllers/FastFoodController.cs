@@ -60,12 +60,12 @@ namespace ApiBremont.Controllers
         }
 
 
-        [HttpGet("ObtenerPedidos/{estado_del_pedido}/{idusuarios}")]
-        public ActionResult<IEnumerable<Modelo.Entidades.EPedidos>> ObtenerPedidos(string estado_del_pedido, int idusuarios)
+        [HttpGet("ObtenerPedidos/{estado_del_pedido}/{idusuarios}/{fechadesde}/{fechahasta}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EPedidos>> ObtenerPedidos(string estado_del_pedido, int idusuarios, DateTime fechadesde, DateTime fechahasta)
         {
             Models.PedidosFFA pedidosffa = new Models.PedidosFFA();
 
-            List<Modelo.Entidades.EPedidos> lista_pedidos = pedidosffa.lista_pedidos(estado_del_pedido, idusuarios);
+            List<Modelo.Entidades.EPedidos> lista_pedidos = pedidosffa.lista_pedidos(estado_del_pedido, idusuarios, fechadesde, fechahasta);
 
             return lista_pedidos;
         }
