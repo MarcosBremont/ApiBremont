@@ -14,12 +14,14 @@ namespace ApiBremont.Models
 {
     public class Menu : Conexion
     {
-        public List<Modelo.Entidades.EMenu> lista_menu()
+        public List<Modelo.Entidades.EMenu> lista_menu(string Disponible)
         {
             List<Modelo.Entidades.EMenu> lista_menu = new List<Modelo.Entidades.EMenu>();
 
             DataTable dt = new DataTable();
             MySqlCommand cmd = new MySqlCommand("SlistaMenuFastFood", GetCon());
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("prm_disponible", Disponible);
             MySqlDataAdapter da = new MySqlDataAdapter();
             da.SelectCommand = cmd;
             da.Fill(dt);
@@ -121,6 +123,32 @@ namespace ApiBremont.Models
             }
 
             return emenu;
+        }
+
+
+        public Result ActualizarMenu(int idmenu_fast_food, string disponible)
+        {
+            Result result = new Result();
+            try
+            {
+                using (GetCon())
+                {
+                    MySqlCommand cmd = new MySqlCommand($"UMenuFFA(?,?)", GetCon());
+                    cmd.Parameters.Add("prm_idmenu_fast_food", MySqlDbType.Int32).Value = idmenu_fast_food;
+                    cmd.Parameters.Add("prm_disponible", MySqlDbType.VarChar).Value = disponible;
+                    Conectar();
+                    cmd.ExecuteNonQuery();
+                    result.Respuesta = "OK";
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Respuesta = "ERROR";
+                result.Mensaje = ex.Message;
+            }
+
+            return result;
+
         }
 
 

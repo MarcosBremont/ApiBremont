@@ -29,12 +29,12 @@ namespace ApiBremont.Controllers
         }
 
 
-        [HttpGet("ObtenerMenu")]
-        public ActionResult<IEnumerable<Modelo.Entidades.EMenu>> ObtenerMenu()
+        [HttpGet("ObtenerMenu/{disponible}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EMenu>> ObtenerMenu(string disponible)
         {
             Models.Menu menu = new Models.Menu();
 
-            List<Modelo.Entidades.EMenu> lista_menu = menu.lista_menu();
+            List<Modelo.Entidades.EMenu> lista_menu = menu.lista_menu(disponible);
 
             return lista_menu;
         }
@@ -229,6 +229,13 @@ namespace ApiBremont.Controllers
         {
             Models.EmpresaFFA empresaFFA = new Models.EmpresaFFA();
             return empresaFFA.ActualizarEmpresa(nombreEmpresa, DireccionEmpresa, TelefonoEmpresa, WhatsappEmpresa, CorreoEmpresa, PrecioEnvio, ClaveEMpresa, idempresa);
+        }
+
+        [HttpGet("UMenu/{idmenu_fast_food}/{disponible}")]
+        public ActionResult<Result> ActualizarMenu(int idmenu_fast_food, string disponible)
+        {
+            Models.Menu menu = new Models.Menu();
+            return menu.ActualizarMenu(idmenu_fast_food, disponible);
         }
 
     }
