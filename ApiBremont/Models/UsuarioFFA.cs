@@ -111,6 +111,64 @@ namespace ApiBremont.Models
 
         }
 
+        public EUsuarioFFA GrabarUrlFotoPerfil(int idusuarios, string foto)
+        {
+            EUsuarioFFA eUsuarioFFA = new EUsuarioFFA();
+            try
+            {
+                // Actualizar Foto
+                var sql = @"update usuarios_fast_food set foto=@foto where idusuarios = @idusuarios";
+                MySqlCommand cmd = new MySqlCommand(sql, GetCon());
+                cmd.Parameters.Add("@idusuarios", MySqlDbType.Int32).Value = idusuarios;
+                cmd.Parameters.Add("@foto", MySqlDbType.Text).Value = foto;
+                Conectar();
+                cmd.ExecuteNonQuery();
+                Desconectar();
+
+                try
+                {
+                    sql = @"SELECT concat('C:/inetpub/wwwroot/apibremont.tecnolora.com/wwwroot','/images/',u.foto) foto FROM usuarios_fast_food u
+                                where u.idusuarios = @idusuarios";
+                    cmd = new MySqlCommand(sql, GetCon());
+                    cmd.Parameters.Add("@idusuarios", MySqlDbType.Int32).Value = idusuarios;
+                    MySqlDataAdapter da = new MySqlDataAdapter();
+                    da.SelectCommand = cmd;
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+
+                    if (dt.Rows.Count > 0)
+                    {
+                        var result = JsonConvert.SerializeObject(dt, Formatting.Indented).Replace("[", "").Replace("]", "");
+                        eUsuarioFFA = JsonConvert.DeserializeObject<EUsuarioFFA>(result, new JsonSerializerSettings()
+                        {
+                            NullValueHandling = NullValueHandling.Ignore
+                        });
+                        eUsuarioFFA.encontrado = true;
+                        eUsuarioFFA.result = "OK";
+                    }
+                    else
+                    {
+                        eUsuarioFFA.result = "ERROR";
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    eUsuarioFFA.result = "ERROR";
+                }
+
+                return eUsuarioFFA;
+            }
+            catch (Exception ex)
+            {
+                WriteException(ex);
+                eUsuarioFFA.result = "ERROR";
+            }
+
+            return eUsuarioFFA;
+        }
+
+
         public Result ActualizarClave(string correo, string clave)
         {
             Result result = new Result();

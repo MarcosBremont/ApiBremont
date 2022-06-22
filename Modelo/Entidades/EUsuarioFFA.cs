@@ -20,5 +20,8 @@ namespace Modelo.Entidades
         public string respuesta { get; set; }
         public string mensaje { get; set; }
         public string empresa { get; set; }
+        public string foto { get; set; }
+        public string result { get; set; }
+        public bool encontrado { get; set; }
     }
 }

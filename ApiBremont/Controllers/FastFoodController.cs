@@ -149,6 +149,25 @@ namespace ApiBremont.Controllers
             return new JsonResult(menu);
         }
 
+        [HttpPost("GrabarImagenCliente")]
+        async public Task<ActionResult> GrabarImagenCliente([FromBody] EUsuarioFFA eusuario)
+        {
+            var nombreFoto = await GrabarFoto(eusuario.foto);
+
+            if (nombreFoto == "ERROR")
+            {
+                eusuario = new EUsuarioFFA();
+                eusuario.result = "ERROR";
+            }
+            else
+            {
+                // grabar el nombre de la imagen en cliente
+                eusuario = new UsuarioFFA().GrabarUrlFotoPerfil(eusuario.idusuarios, "http://apibremont.tecnolora.com/images/" + nombreFoto);
+            }
+
+            return new JsonResult(eusuario);
+        }
+
         [HttpPost("GrabarImagenEmpesa")]
         async public Task<ActionResult> GrabarImagenEmpresa([FromBody] EEmpresaFFA eempresa)
         {
