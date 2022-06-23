@@ -37,7 +37,7 @@ namespace ApiBremont.Controllers
 
                 using (Image image = await Image.LoadAsync(new System.IO.MemoryStream(bytes)))
                 {
-                    image.Mutate(x => x.Resize(image.Width / 2, image.Height / 2));
+                    //image.Mutate(x => x.Resize(image.Width / 2, image.Height / 2));
                     image.Save(rutaFoto + "/" + nombreFoto);
                 }
             }
