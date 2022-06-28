@@ -42,7 +42,7 @@ namespace ApiBremont.Models
 
         }
 
-        public EUsuarioFFA IniciarSesion(string email, string password)
+        public EUsuarioFFA IniciarSesion(string email, string password, string token_firebase)
         {
             EUsuarioFFA eusuarioffa = new EUsuarioFFA();
             try
@@ -52,6 +52,7 @@ namespace ApiBremont.Models
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("prm_correo", MySqlDbType.Text).Value = email;
                 cmd.Parameters.Add("prm_clave", MySqlDbType.Text).Value = password;
+                cmd.Parameters.Add("prm_token_firebase", MySqlDbType.Text).Value = token_firebase;
                 MySqlDataAdapter da = new MySqlDataAdapter();
                 da.SelectCommand = cmd;
                 da.Fill(dt);

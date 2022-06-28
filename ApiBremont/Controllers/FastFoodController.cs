@@ -20,11 +20,11 @@ namespace ApiBremont.Controllers
             this.ContentRoot = configuration.GetValue<string>(WebHostDefaults.ContentRootKey).ToString();
         }
 
-        [HttpGet("IniciarSesion/{email}/{password}")]
-        public ActionResult<EUsuarioFFA> IniciarSesion(string email, string password)
+        [HttpGet("IniciarSesion/{email}/{password}/{token_firebase}")]
+        public ActionResult<EUsuarioFFA> IniciarSesion(string email, string password, string token_firebase)
         {
             Models.UsuarioFFA usuarioFFA = new Models.UsuarioFFA();
-            var response = usuarioFFA.IniciarSesion(email, password);
+            var response = usuarioFFA.IniciarSesion(email, password, token_firebase);
             return response;
         }
 
