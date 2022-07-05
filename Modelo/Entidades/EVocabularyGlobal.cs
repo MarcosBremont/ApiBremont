@@ -14,6 +14,7 @@ namespace Modelo.Entidades
         public string word2 { get; set; }
         public string anotherfield { get; set; }
         public string anotherfield2 { get; set; }
+        public string Vocabulary_category { get; set; }
 
 
     }
