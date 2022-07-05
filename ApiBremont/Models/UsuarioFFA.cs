@@ -189,6 +189,29 @@ namespace ApiBremont.Models
 
         }
 
+
+        public List<Modelo.Entidades.EUsuarioFFA> lista_tokens_usuarios()
+        {
+            List<Modelo.Entidades.EUsuarioFFA> lista_tokens_usuarios = new List<Modelo.Entidades.EUsuarioFFA>();
+
+            DataTable dt = new DataTable();
+            MySqlCommand cmd = new MySqlCommand("STokensUsuarios", GetCon());
+            MySqlDataAdapter da = new MySqlDataAdapter();
+            da.SelectCommand = cmd;
+            da.Fill(dt);
+
+            if (dt.Rows.Count > 0)
+            {
+                var result = JsonConvert.SerializeObject(dt, Formatting.Indented);
+                lista_tokens_usuarios = JsonConvert.DeserializeObject<List<Modelo.Entidades.EUsuarioFFA>>(result, new JsonSerializerSettings()
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+            }
+
+            return lista_tokens_usuarios;
+        }
+
     }
 
 }

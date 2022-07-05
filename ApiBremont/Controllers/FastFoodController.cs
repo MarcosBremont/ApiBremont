@@ -257,5 +257,16 @@ namespace ApiBremont.Controllers
             return menu.ActualizarMenu(idmenu_fast_food, disponible);
         }
 
+        [HttpGet("STokensUsuarios")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EUsuarioFFA>> ObtenerTokensUsuarios()
+        {
+            Models.UsuarioFFA usuarioffa = new Models.UsuarioFFA();
+
+            List<Modelo.Entidades.EUsuarioFFA> lista_tokens = usuarioffa.lista_tokens_usuarios();
+
+            return lista_tokens;
+        }
+
+
     }
 }

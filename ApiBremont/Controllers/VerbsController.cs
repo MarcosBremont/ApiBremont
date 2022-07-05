@@ -320,6 +320,16 @@ namespace ApiBremont.Controllers
 
 
 
+        [HttpGet("VocabularyGlobal/{Vocabulary_category}")]
+        public ActionResult<IEnumerable<Modelo.Entidades.EVocabularyGlobal>> ListOfvocabularybycategory(string Vocabulary_category)
+        {
+            Models.VocabularyGlobal vocabularyGlobal = new Models.VocabularyGlobal();
+
+            List<Modelo.Entidades.EVocabularyGlobal> list_vocabulary = vocabularyGlobal.List_Of_VocabularyGlobalByCategory(Vocabulary_category);
+
+            return list_vocabulary;
+        }
+
 
 
 
